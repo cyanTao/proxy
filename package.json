@@ -11,5 +11,9 @@
     "express": "^4.17.1",
     "xtemplate": "^5.0.10",
     "xtpl": "^3.4.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "debug": "node server.js"
   }
 }

@@ -92,7 +92,9 @@ router.all("*", (req, res) => {
 
     })
     res.send(data);
-  });
+  }).catch(err => {
+    res.status(502).send(err)
+  })
 });
 
 
@@ -100,5 +102,11 @@ router.all("*", (req, res) => {
 app.use("/", router);
 
 app.listen(port, () => {
-  console.log(`http://127.0.0.1:${port}`);
+  const path = `http://127.0.0.1:${port}`
+  console.warn(`serer for : ` + cyan(path));
+  console.log(`debug for : ${cyan(path + '/index.html')}`);
 });
+
+function cyan(text) {
+  return '\033[34m' + text + '\x1B[37m'
+}

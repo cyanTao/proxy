@@ -10,7 +10,9 @@
     />
   </head>
 
-  <body></body>
+  <body>
+    <div></div>
+  </body>
 </html>
 <script src="/js/jquery.min.js"></script>
 <script>
@@ -27,11 +29,12 @@
     success: function (data) {
       //请求成功时处理
       console.log("success", data);
-      // location.href = './success.html'
+      $('body div').text('请求成功')
     },
     error: function (err) {
       //请求出错处理
       console.log("error", err);
+      $('body div').text('请求失败')
     },
   });
 </script>
