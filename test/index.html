@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Test Demo</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+    />
+  </head>
+
+  <body></body>
+</html>
+<script src="/js/jquery.min.js"></script>
+<script>
+  $.ajax({
+    url: "http://127.0.0.1:8081/test?query1=13&query2=456", //请求的url地址
+    dataType: "json", //返回格式为json
+    headers: {
+      'x-token': "jgorjgowegweofjweoj",
+    },
+    data: {
+      test: 121,
+    }, //参数值
+    type: "POST", //请求方式
+    success: function (data) {
+      //请求成功时处理
+      console.log("success", data);
+      // location.href = './success.html'
+    },
+    error: function (err) {
+      //请求出错处理
+      console.log("error", err);
+    },
+  });
+</script>
