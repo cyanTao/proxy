@@ -1,5 +1,9 @@
+const {
+  sleep
+} = require('./utils')
 module.exports = {
-  '/test': () => {
+  '/test': async () => {
+    await sleep(2000)
     return {
       name: 123
     }
