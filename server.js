@@ -38,10 +38,44 @@ router.all('/test', function (req, res) {
   })
 })
 
+router.post('/upload', function (req, res) {
+  res.send({
+    data: {
+      link: `http://192.168.22.32:8080/data/${req.files.file.path}`,
+      name: req.body.fileName
+    }
+  })
+})
+
+
+router.get('/data/*', function (req, res) {
+  try {
+    res.sendFile(path.join(__dirname, req.path.slice(6)), function (err) {
+      if (err) {
+        res.sendStatus(404)
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+router.get('/web_code/*', function (req, res) {
+  try {
+    res.sendFile(path.join('D:/project/web_code/dist', req.path.slice(10)), function (err) {
+      if (err) {
+        res.sendStatus(404)
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 app.use('/', router)
 
 
-app.listen('8080', () => {
-  console.log('http://127.0.0.1:8080')
+const port = 8080
+app.listen(port, () => {
+  console.log(`http://127.0.0.1:${port}`)
 })
