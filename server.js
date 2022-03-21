@@ -2,6 +2,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const multipart = require('connect-multiparty');
+const path = require('path')
 
 const app = express()
 const router = express.Router()
@@ -15,12 +16,16 @@ app.use(
   })
 )
 
+
 // 中间件处理文件请求
+
 app.all('*', multipartMiddleware, function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "*");
   if (req.method.toLowerCase() == "options") res.sendStatus(200);
   else next();
 })
-
 
 router.all('/test', function (req, res) {
   const {
@@ -62,7 +67,7 @@ router.get('/data/*', function (req, res) {
 
 router.get('/web_code/*', function (req, res) {
   try {
-    res.sendFile(path.join('D:/project/web_code/dist', req.path.slice(10)), function (err) {
+    res.sendFile(path.join('D:/practice/proxy/web_code', req.path.slice(10)), function (err) {
       if (err) {
         res.sendStatus(404)
       }
