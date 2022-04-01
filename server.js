@@ -67,7 +67,7 @@ router.get('/data/*', function (req, res) {
 
 router.get('/web_code/*', function (req, res) {
   try {
-    res.sendFile(path.join('D:/practice/proxy/web_code', req.path.slice(10)), function (err) {
+    res.sendFile(path.join(__dirname, 'web_code', req.params[0]), function (err) {
       if (err) {
         res.sendStatus(404)
       }
