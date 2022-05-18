@@ -77,6 +77,18 @@ router.get('/web_code/*', function (req, res) {
   }
 })
 
+router.get('/static/*', function (req, res) {
+  try {
+    res.sendFile(path.join(__dirname, 'static', req.params[0]), function (err) {
+      if (err) {
+        res.sendStatus(404)
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 app.use('/', router)
 
 
